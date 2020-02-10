@@ -8,7 +8,7 @@ const myStyle = {
 const Navbar = (): any => (
   <nav style={myStyle} className="navbar is-fixed-top">
     <div className="navbar-item is-size-3 has-text-danger">
-      TODO
+      ToDo App
     </div>
   </nav>
 )

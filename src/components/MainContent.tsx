@@ -1,5 +1,5 @@
 import React from 'react'
-
+import TodoItem from './TodoItem'
 // Styling
 
 const myStyle = {
@@ -35,24 +35,9 @@ const MainContent = (): any => (
       <h1 className="is-size-2">
         Good {timeOfDay},  What's your favourite {Name}??
       </h1>
-      <div>
-        <input type="checkbox" name="scales" id="scales"/>
-        <label htmlFor="scales">
-          Scales
-        </label>
-      </div>
-      <div>
-        <input type="checkbox" name="horns" id="horns"/>
-        <label htmlFor="horns">
-          Horns
-        </label>
-      </div>
-      <div>
-        <input type="checkbox" name="bullets" id="bullets"/>
-        <label htmlFor="bullets">
-          Bullets
-        </label>
-      </div>
+      <TodoItem />
+      <TodoItem />
+      <TodoItem />
       <div>
         <button style={buttonStyle} className="button is-danger" type="submit">
           Submit
