@@ -12,13 +12,16 @@ const textStyle = {
   color: 'red',
 } as React.CSSProperties
 
-const TodoItem = (props: any): any => (
-  <label style={myStyle} className="checkbox">
-    <input type="checkbox" id="idItem" />
-    <p style={textStyle}>
-      {props.text}
-    </p>
-  </label>
-)
+
+const TodoItem = (props: any): any => {
+  return (
+    <label style={myStyle} className="checkbox">
+      <input type="checkbox" id="idItem" checked={props.completed ? true : false} onChange={(): any => {console.log('change')}} />
+      <p style={textStyle}>
+        {props.text}
+      </p>
+    </label>
+  )
+}
 
 export default TodoItem
