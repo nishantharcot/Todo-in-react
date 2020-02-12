@@ -1,7 +1,5 @@
 import React from 'react'
-// import Joke from './components/Joke'
 import Navbar from './components/Navbar'
-// import jokesData from './components/jokesData' 
 // import productsData from './components/productsData'
 // import Product from './components/Product'
 import todosData from './components/todosData'
@@ -28,32 +26,50 @@ const myStyle = {
 
 // console.log(productsOverPrice10)
 
-type MyProps = {
+interface MyProps {
 
 }
 
-type MyState = {
-  todoItems?: Array<object>;
+interface todoItem {
+  id: number,
+  text: string,
+  completed: boolean
+}
+
+interface MyState {
+  todoItems: todoItem[];
 }
 
 class App extends React.Component<MyProps, MyState> {
   constructor() {
     super();
     this.state = {
-      todoItems: todosData.map((todoItem): any => (
-        <TodoItem key={todoItem.id} text={todoItem.text} completed={todoItem.completed} />
-      ))
+      todoItems: todosData
     }
+    this.handleChange = this.handleChange.bind(this)
+  }
+  handleChange(id: number) {
+    let dummyState = this.state;
+    dummyState.todoItems.map((todoItem): any => {
+      if (todoItem.id === id) {
+        todoItem.completed = !todoItem.completed;
+      }
+    })
+    this.setState(dummyState);
   }
 
   render() {
+    const todoItems = todosData.map((todoItem): any => (
+      <TodoItem key={todoItem.id} id={todoItem.id} text={todoItem.text} completed={todoItem.completed} handleChange={this.handleChange} />
+    ))
+    // console.log(typeof(todosData));
     return (
       <body>
         <Navbar />
         <section className="hero is-dark is-medium">
           <div className="hero-body">
             <div style={myStyle} className="container is-size-4">
-              {this.state.todoItems}
+              {todoItems}
             </div>
           </div>
         </section>
