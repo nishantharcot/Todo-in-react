@@ -7,6 +7,7 @@ import TodoItem from './components/TodoItem'
 
 // Styling
 
+
 const myStyle = {
   height: '60vh',
   display: 'flex',
@@ -48,9 +49,14 @@ class App extends React.Component<MyProps, MyState> {
     }
     this.handleChange = this.handleChange.bind(this)
   }
+
+  componentDidMount () {
+    console.log('Mounted in App')
+  }
+
   handleChange(id: number) {
     let dummyState = this.state;
-    dummyState.todoItems.map((todoItem): any => {
+    dummyState.todoItems.map((todoItem): void => {
       if (todoItem.id === id) {
         todoItem.completed = !todoItem.completed;
       }
@@ -60,11 +66,17 @@ class App extends React.Component<MyProps, MyState> {
 
   render() {
     const todoItems = todosData.map((todoItem): any => (
-      <TodoItem key={todoItem.id} id={todoItem.id} text={todoItem.text} completed={todoItem.completed} handleChange={this.handleChange} />
+      <TodoItem
+        key={todoItem.id}
+        id={todoItem.id}
+        text={todoItem.text}
+        completed={todoItem.completed}
+        handleChange={this.handleChange}
+      />
     ))
     // console.log(typeof(todosData));
     return (
-      <body>
+      <div>
         <Navbar />
         <section className="hero is-dark is-medium">
           <div className="hero-body">
@@ -73,7 +85,7 @@ class App extends React.Component<MyProps, MyState> {
             </div>
           </div>
         </section>
-      </body>
+      </div>
     )
   }
 }

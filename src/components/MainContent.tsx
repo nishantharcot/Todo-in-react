@@ -35,9 +35,9 @@ const MainContent = (): any => (
       <h1 className="is-size-2">
         Good {timeOfDay},  What's your favourite {Name}??
       </h1>
+      {/* <TodoItem />
       <TodoItem />
-      <TodoItem />
-      <TodoItem />
+      <TodoItem /> */}
       <div>
         <button style={buttonStyle} className="button is-danger" type="submit">
           Submit
