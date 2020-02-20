@@ -23,7 +23,7 @@ class TodoItem extends React.Component<MyProps, MyState> {
   }
 
   componentDidMount () {
-    console.log('Mounted')
+    // console.log('Mounted')
   }
 
   handleChange(currentState: boolean): any {

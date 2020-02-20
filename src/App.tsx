@@ -37,31 +37,40 @@ interface todoItem {
   completed: boolean
 }
 
+interface People {
+  name: String
+}
+
 interface MyState {
   todoItems: todoItem[];
+  character: Array<People>;
 }
 
 class App extends React.Component<MyProps, MyState> {
   constructor() {
     super();
     this.state = {
-      todoItems: todosData
+      todoItems: todosData,
+      character: []
     }
     this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount () {
-    console.log('Mounted in App')
+    fetch('https://swapi.co/api/people')
+      .then(response => response.json())
+      .then(data => console.log(data.results))
   }
 
+
   handleChange(id: number) {
-    let dummyState = this.state;
-    dummyState.todoItems.map((todoItem): void => {
-      if (todoItem.id === id) {
-        todoItem.completed = !todoItem.completed;
-      }
+    this.setState(prevstate => {
+      prevstate.todoItems.map(todoItem => {
+        if (todoItem.id === id) {
+          todoItem.completed = !todoItem.completed
+        }
+      })
     })
-    this.setState(dummyState);
   }
 
   render() {
@@ -74,14 +83,15 @@ class App extends React.Component<MyProps, MyState> {
         handleChange={this.handleChange}
       />
     ))
-    // console.log(typeof(todosData));
     return (
       <div>
         <Navbar />
         <section className="hero is-dark is-medium">
           <div className="hero-body">
             <div style={myStyle} className="container is-size-4">
-              {todoItems}
+              {/* {todoItems} */}
+              {/* {this.state.character.name} */}
+              {console.log(this.state.character)}
             </div>
           </div>
         </section>
